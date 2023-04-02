@@ -1,5 +1,5 @@
 <template>
-  <v-sheet color="yellow lighten-4 " rounded elevation class="pa-4 black--text">
+  <v-sheet color="yellow lighten-4" rounded elevation class="pa-4 black--text">
     <div class="d-flex align-center mb-2">
       <v-icon color="orange lighten-1">mdi-information</v-icon>
       <span class="text-h6 ml-2">We need more information from you!</span>

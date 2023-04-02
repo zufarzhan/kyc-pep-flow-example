@@ -19,7 +19,7 @@ router.get('/pep/:name', async (req, res, next) => {
 })
 
 
-// get information about PEPs by provided semicolon separated list of names
+// get information about PEPs by provided semicolon separated list of names if there are any, otherwise returns an empty array
 router.get('/pep', async (req, res, next) => {
 
   const namesParam = req.query.names;
@@ -32,7 +32,7 @@ router.get('/pep', async (req, res, next) => {
         }
       })
     
-      return peps ? res.json({ peps }) : res.status(404).json({ message: "No PEPs in the provided list of names." })
+      return res.json({ peps })
     } catch {
       next(new Error('Something went wrong'))
     }
