@@ -15,14 +15,15 @@
     </v-alert>
 
     <v-form @submit.prevent="checkCompanyBoardMembers">
-      <v-row class="mt-2 px-4" align="center">
+      <div class="mt-2 d-flex align-center">
         <v-text-field
           v-model="orgNumber"
           label="Organization number"
           required
+          class="flex-"
         ></v-text-field>
         <v-btn class="ml-4" color="primary" type="submit">Check</v-btn>
-      </v-row>
+      </div>
     </v-form>
 
     <div v-if="checkedBoardMembers.length" class="mt-4" align="center">
