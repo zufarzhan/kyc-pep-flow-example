@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>Payment information</v-card-title>
-    <v-divider></v-divider>
+    <v-divider />
 
     <v-container class="pa-4">
       <div class="mb-3">
@@ -9,11 +9,11 @@
         2.54 kr
       </div>
       <div class="mb-3">
-        <span class="font-weight-medium"> Number of enabled chargers: </span>
+        <span class="font-weight-medium">Number of enabled chargers:</span>
         31
       </div>
       <div class="mb-3">
-        <span class="font-weight-medium"> Number of users:</span>
+        <span class="font-weight-medium">Number of users:</span>
         23
       </div>
       <div class="d-flex justify-end">

@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>Transactions</v-card-title>
-    <v-divider></v-divider>
+    <v-divider />
 
     <v-container class="pa-4">
       <v-simple-table>

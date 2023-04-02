@@ -1,7 +1,8 @@
 <template>
   <v-card class="py-6 px-10">
     <div class="text-h6 mb-2">PEP company checker</div>
-    <v-divider></v-divider>
+    <v-divider />
+
     <v-alert dense type="info">
       Please enter your company's organization number and then press "Check".
       All board members will be checked against PEP dataset available on
@@ -12,6 +13,7 @@
       <v-divider class="my-2" />
       People marked with orange color are PEP.
     </v-alert>
+
     <v-form @submit.prevent="checkCompanyBoardMembers">
       <v-row class="mt-2 px-4" align="center">
         <v-text-field
@@ -22,6 +24,7 @@
         <v-btn class="ml-4" color="primary" type="submit">Check</v-btn>
       </v-row>
     </v-form>
+
     <div v-if="checkedBoardMembers.length" class="mt-4" align="center">
       <v-alert
         v-for="(member, i) in checkedBoardMembers"
@@ -36,6 +39,10 @@
         <v-btn color="primary">Submit</v-btn>
       </div>
     </div>
+    <div v-if="isLoading" class="text-center">
+      <v-progress-circular indeterminate color="primary"></v-progress-circular>
+    </div>
+
     <v-alert v-if="error" class="mt-4" dense type="error">
       {{ error }}
     </v-alert>
@@ -49,6 +56,7 @@ export default {
     return {
       orgNumber: '',
       error: '',
+      isLoading: false,
       checkedBoardMembers: [],
     }
   },
@@ -56,8 +64,11 @@ export default {
   methods: {
     async checkCompanyBoardMembers() {
       this.error = null
+      this.isLoading = true
+      this.checkedBoardMembers = []
       if (!this.orgNumber.match(/^\d{9}$/)) {
         this.error = 'Organization number should consist of 9 digits'
+        this.isLoading = false
         return
       }
 
@@ -76,7 +87,13 @@ export default {
           return { name, isPep: peps.some((pep) => pep.name === name) }
         })
       } catch (error) {
-        this.error = error.response.data.message
+        if (error.response.data) {
+          this.error = error.response.data.message
+        } else {
+          this.error = 'Something went wrong'
+        }
+      } finally {
+        this.isLoading = false
       }
     },
 
@@ -87,9 +104,12 @@ export default {
 
       return boardMembers.map((member) => {
         const name = member.person.navn
-        return `${name.fornavn} ${
-          name.mellomnavn ? name.mellomnavn + ' ' : ''
-        }${name.etternavn}`
+        return (
+          name.fornavn +
+          (name.mellomnavn ? ' ' + name.mellomnavn : '') +
+          ' ' +
+          name.etternavn
+        )
       })
     },
   },
