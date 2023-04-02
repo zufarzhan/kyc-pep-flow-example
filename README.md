@@ -36,6 +36,17 @@ $ npm install
 $ npm run dev
 ```
 
+## How to edit database
+
+- open Prisma Studio by running the following command in project's root folder
+
+```bash
+$ npx prisma studio
+```
+
+- go to `http://localhost:5555`  
+  <br/>
+
 ## Comments
 
 Technologies used:
