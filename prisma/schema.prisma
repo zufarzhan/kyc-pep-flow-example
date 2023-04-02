@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../db/pep_norway.db"
+}
+
+model Pep {
+  id          String  @id
+  schema      String?
+  name        String
+  aliases     String?
+  birth_date  String?
+  countries   String?
+  addresses   String?
+  identifiers String?
+  sanctions   String?
+  phones      String?
+  emails      String?
+  dataset     String?
+  first_seen  String?
+  last_seen   String?
+}
