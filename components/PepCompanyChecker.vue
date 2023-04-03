@@ -88,11 +88,9 @@ export default {
           return { name, isPep: peps.some((pep) => pep.name === name) }
         })
       } catch (error) {
-        if (error.response.data) {
-          this.error = error.response.data.message
-        } else {
-          this.error = 'Something went wrong'
-        }
+        this.error = error.response.data
+          ? error.response.data.message
+          : 'Something went wrong'
       } finally {
         this.isLoading = false
       }
