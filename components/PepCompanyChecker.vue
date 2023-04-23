@@ -75,7 +75,7 @@ export default {
 
       try {
         const roles = await this.$axios.$get(
-          `https://data.brreg.no/enhetsregisteret/api/enheter/${this.orgNumber}/roller`
+          `/api/company-roles/${this.orgNumber}`
         )
 
         const names = this.getBoardMembersNames(roles)
@@ -88,9 +88,7 @@ export default {
           return { name, isPep: peps.some((pep) => pep.name === name) }
         })
       } catch (error) {
-        this.error = error.response.data
-          ? error.response.data.message
-          : 'Something went wrong'
+        this.error = error.response.data.message
       } finally {
         this.isLoading = false
       }
