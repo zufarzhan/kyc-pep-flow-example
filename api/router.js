@@ -1,8 +1,19 @@
 const { PrismaClient } = require('@prisma/client')
 const { Router } = require('express') 
+const axios = require('axios')
 
 const router = Router()
 const prisma = new PrismaClient()
+
+// get information about the company roles and members by their org number from Brreg.no API 
+router.get('/company-roles/:orgNumber', async (req, res, next) => {
+  try {
+    const roles = await axios.get(`https://data.brreg.no/enhetsregisteret/api/enheter/${req.params.orgNumber}/roller`)
+    roles.data ? res.json({ ...roles.data }) : res.status(404).json({ message: "No information found about this company" })
+  } catch {
+    next(new Error('Something went wrong with retrieving data from Bregg'))
+  }
+})
 
 // get information about PEP by name, returns error if there is no PEP with provided name
 router.get('/pep/:name', async (req, res, next) => {
