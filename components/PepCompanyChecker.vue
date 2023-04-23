@@ -67,6 +67,7 @@ export default {
       this.error = null
       this.isLoading = true
       this.checkedBoardMembers = []
+
       if (!this.orgNumber.match(/^\d{9}$/)) {
         this.error = 'Organization number should consist of 9 digits'
         this.isLoading = false
