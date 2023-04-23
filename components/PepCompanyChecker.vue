@@ -103,12 +103,7 @@ export default {
 
       return boardMembers.map((member) => {
         const name = member.person.navn
-        return (
-          name.fornavn +
-          (name.mellomnavn ? ' ' + name.mellomnavn : '') +
-          ' ' +
-          name.etternavn
-        )
+        return `${name.fornavn} ${name.etternavn}`
       })
     },
   },

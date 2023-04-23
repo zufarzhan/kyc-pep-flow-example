@@ -21,7 +21,8 @@ However, in order to get actual money from their employees and then pay for comp
 - This app uses https://www.brreg.no/ API to get information about board members of a Norwegian company by given organization number
 - PEP dataset was obtained from https://www.opensanctions.org/ on 01.04.2023
 - Data for this app includes only Norwegian PEP, extracted from the dataset described above
-- This project uses SQLite database. You can find the pep_norway.db file with Norwegian PEP in the "db" folder.
+- Norwegian PEP were extracted using RBQL query of the Rainbow CSV VSCode extension. Some names might be missing in the extracted data even though they are present on the Open Sanctions website
+- This project uses SQLite database. You can find the pep_norway.db file with Norwegian PEP in the "db" folder
   <br/>
 
 ## Installation instructions / How to run
